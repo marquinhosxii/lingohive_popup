@@ -10,10 +10,15 @@ const questions = [
   },
   {
     question: "Choose the correct sentence:",
-    options: ["She don’t like apples", "She doesn’t like apples", "She not like apples", "She isn’t like apples"],
+    options: [
+      "She don’t like apples",
+      "She doesn’t like apples",
+      "She not like apples",
+      "She isn’t like apples"
+    ],
     answer: 1
   }
-  // aquí agregarías más preguntas
+  // Add more questions here
 ];
 
 export default function Quiz() {
@@ -23,12 +28,12 @@ export default function Quiz() {
 
   const handleAnswer = (i: number) => {
     if (i === questions[current].answer) {
-      setScore(score + 1);
+      setScore((prev) => prev + 1);
     }
     if (current + 1 < questions.length) {
-      setCurrent(current + 1);
+      setCurrent((prev) => prev + 1);
     } else {
-      localStorage.setItem("score", score.toString());
+      localStorage.setItem("score", (i === questions[current].answer ? score + 1 : score).toString());
       router.push("/result");
     }
   };
